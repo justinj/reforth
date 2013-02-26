@@ -1,7 +1,11 @@
+# Functions relating to general math things.
+
 module Forth
   module Math
-    def plus
-      @program.output "5"
+    def +
+      a = sender.pop
+      b = sender.pop
+      sender.push (a+b)
     end
   end
 end

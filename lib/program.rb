@@ -9,13 +9,13 @@ module Forth
     end
 
     def run(tokens)
-      tokens.map! { |token| rename token }
+#      tokens.map! { |token| rename token }
       @output = ""
       tokens.each do |token|
         if number? token
           push(token)
         else
-          @dictionary.send(token)
+          @dictionary.run(token)
         end 
       end
       @output

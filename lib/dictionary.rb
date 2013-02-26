@@ -1,28 +1,29 @@
 require_relative "math"
+require_relative "core"
 
 module Forth
   class Dictionary
     include Math
+    include Core
 
     def initialize program
-      @program = program  
+      @sender = program
     end
 
-    def run
-      
+    def sender
+      @sender
+    end
+
+    def run word
+      send(rename(word))       
     end
 
     SPECIAL_NAMES = {
       "." => "dot",
-      "+" => "plus",
     }
-    def rename token
-      SPECIAL_NAMES.fetch(token, token)
+    def rename word
+      SPECIAL_NAMES.fetch(word, word)
     end
     private :rename
-
-    def dot
-      @program.output @program.pop.to_s
-    end
   end
 end
