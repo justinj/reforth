@@ -16,4 +16,10 @@ describe Forth::Parser do
       parser.run(": PUT_5 5 . ; PUT_5").should eql "5"
     end
   end 
+
+  describe "#calling_functions" do
+    it "can be done in another function" do
+      parser.run(": PUT_5 5 . ; : PUT_55 PUT_5 PUT_5 ; PUT_55").should eql "5 5"
+    end
+  end
 end

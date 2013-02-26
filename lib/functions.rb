@@ -13,7 +13,7 @@ module Forth
     end 
 
     def_word :";" do
-      pointer_jump(pop_rstack + 1)
+      pointer_jump(pop_rstack)
     end
   end
 end
