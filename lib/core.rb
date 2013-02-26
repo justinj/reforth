@@ -1,6 +1,8 @@
 # Functions core to the Forth language, but don't necessarily fit in another
 # category.
 
+require_relative "forth_module"
+
 module Forth
   module Core
     include ForthModule
