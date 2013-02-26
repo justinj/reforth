@@ -14,16 +14,16 @@ module Forth
       @sender
     end
 
-    def run word
-      send(rename(word))       
+    def pop
+      @sender.pop
     end
 
-    SPECIAL_NAMES = {
-      "." => "dot",
-    }
-    def rename word
-      SPECIAL_NAMES.fetch(word, word)
+    def push val
+      @sender.push val
     end
-    private :rename
+
+    def run word
+      instance_eval(&@@standard_words[word.to_sym])
+    end
   end
 end

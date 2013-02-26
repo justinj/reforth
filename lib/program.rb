@@ -9,7 +9,6 @@ module Forth
     end
 
     def run(tokens)
-#      tokens.map! { |token| rename token }
       @output = ""
       tokens.each do |token|
         if number? token
@@ -22,6 +21,7 @@ module Forth
     end
 
     def output text
+      @output += " " unless @output == ""
       @output << text 
     end
 

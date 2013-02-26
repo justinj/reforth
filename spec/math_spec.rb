@@ -30,4 +30,14 @@ describe Forth::Math do
       lambda { parser.run("1 0 / .") }.should raise_error "division by 0"
     end
   end
+
+  describe "#MOD" do
+    it "produces the modulus of two numbers" do
+      parser.run("7 2 MOD .").should eql "1"
+    end
+
+    it "raises and exception for division by 0" do
+      lambda { parser.run("1 0 MOD .") }.should raise_error "division by 0"
+    end
+  end
 end

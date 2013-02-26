@@ -3,8 +3,15 @@
 
 module Forth
   module Core
-    def dot
-      sender.output(sender.pop.to_s)
+    include ForthModule
+    def_word :"." do
+      sender.output(pop.to_s)
+    end
+
+    def_word :DUP do
+      a = pop
+      push a
+      push a 
     end
   end 
 end
