@@ -6,17 +6,19 @@ module Forth
       @stack = []
       @rstack = []
       @pointer_loc = 0
+      @pointers = []
       @current_output = ""
       @dictionary = Dictionary.new self
       @tokens = []
     end
 
     def run(tokens)
-      @tokens += tokens
+      @tokens << tokens
+      @pointers << 0
       @output = ""
-      until @pointer_loc >= @tokens.count
-        parse_token(@tokens[@pointer_loc])
-        @pointer_loc += 1
+      until @pointers.last >= @tokens.last.count
+        parse_token(@tokens.last[@pointers.last])
+        @pointers[@pointers.count-1] = @pointers.last + 1
       end
       @output
     end
@@ -48,7 +50,7 @@ module Forth
     end
 
     def pointer_loc
-      @pointer_loc
+      @pointers.last
     end
 
     def push_rstack val
@@ -60,12 +62,13 @@ module Forth
       @rstack.pop
     end
 
-    def token_at position
-      @tokens[position] 
+    def current_token
+      @tokens.last[@pointers.last]
     end
 
     def pointer_jump location
-      @pointer_loc = location
+      @pointers.pop
+      @pointers << location
     end
   end
 end

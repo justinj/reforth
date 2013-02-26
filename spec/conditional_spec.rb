@@ -21,7 +21,6 @@ describe Forth::Conditional do
     it "doesn't execute up to the THEN if the thing on top of the stack is falsey" do
       parser.run("0 IF 5 . THEN").should eql ""
     end
-
     it "can be nested" do
       parser.run("0 IF 1 IF THEN 5 . THEN").should eql ""
     end

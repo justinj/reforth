@@ -40,7 +40,7 @@ module Forth
     end
 
     def token_under_pointer
-      @sender.token_at(@sender.pointer_loc) 
+      @sender.current_token
     end
 
     def pointer_jump location
@@ -49,6 +49,10 @@ module Forth
 
     def pointer_inc
       @sender.pointer_jump(@sender.pointer_loc + 1)
+    end
+
+    def run_block(tokens)
+      @sender.run(tokens)
     end
 
     def def_new_word(name, location)

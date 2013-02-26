@@ -13,22 +13,15 @@ module Forth
 
     def_word :IF do
       a = pop
-      if a == 0
-        depth = 1
-        until matching_then(depth) || matching_else(depth)
-          pointer_inc
-          depth += 1 if token_under_pointer == "IF"
-          depth -= 1 if token_under_pointer == "THEN"
-        end
+      pointer_inc
+      # ew ugly
+      unless token_under_pointer.first.is_a? Array
+        if_else = [token_under_pointer, []]
+      else
+        if_else = token_under_pointer
       end
-    end
-
-    def matching_then depth
-      depth == 0 && token_under_pointer == "THEN"
-    end
-
-    def matching_else depth
-      depth == 1 && token_under_pointer == "ELSE"
+      run_block if_else[a == 0 ? 1 : 0]
+      pointer_inc
     end
 
     def_word :THEN do

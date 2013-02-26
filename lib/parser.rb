@@ -12,7 +12,33 @@ module Forth
     end 
 
     def tokenize(code)
-      code.split(/\s/)
+      tokens = code.split(/\s/)
+      parse(tokens)
+    end
+
+    def parse(tokens)
+      tree = []
+      until tokens.empty?
+        token = tokens.shift
+        return tree if ends_block?(token)
+        return [tree, parse(tokens)] if mid_block?(token)
+        tree << token
+        tree << parse(tokens) if begins_block?(token)
+      end
+      tree
+    end
+
+    def begins_block?(token)
+      token == "IF"
+    end
+
+    # some things, like ELSE, split up a block to two
+    def mid_block?(token)
+      token == "ELSE"
+    end
+
+    def ends_block?(token)
+      token == "THEN"
     end
   end
 end
