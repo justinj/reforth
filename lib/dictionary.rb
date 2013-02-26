@@ -1,12 +1,14 @@
 require_relative "core"
 require_relative "functions"
 require_relative "math"
+require_relative "conditional"
 
 module Forth
   class Dictionary
     include Core
     include Functions
     include Math
+    include Conditional
 
     def initialize program
       @sender = program
