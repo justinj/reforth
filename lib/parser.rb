@@ -29,7 +29,7 @@ module Forth
     end
 
     def begins_block?(token)
-      token == "IF"
+      ["IF","DO"].include? token
     end
 
     # some things, like ELSE, split up a block to two
@@ -38,7 +38,7 @@ module Forth
     end
 
     def ends_block?(token)
-      token == "THEN"
+      ["THEN", "LOOP"].include? token
     end
   end
 end

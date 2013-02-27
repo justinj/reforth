@@ -7,7 +7,7 @@ module Forth
       @rstack = []
       @pointer_loc = 0
       @pointers = []
-      @current_output = ""
+      @output = ""
       @dictionary = Dictionary.new self
       @tokens = []
     end
@@ -15,11 +15,12 @@ module Forth
     def run(tokens)
       @tokens << tokens
       @pointers << 0
-      @output = ""
       until @pointers.last >= @tokens.last.count
         parse_token(@tokens.last[@pointers.last])
         @pointers[@pointers.count-1] = @pointers.last + 1
       end
+      @pointers.pop
+      @tokens.pop
       @output
     end
 
