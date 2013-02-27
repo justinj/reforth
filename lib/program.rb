@@ -2,8 +2,11 @@ require_relative "dictionary"
 
 module Forth
   class Program
+    attr_accessor :loops
+
     def initialize
       @stack = []
+      @loops = []
       @rstack = []
       @pointer_loc = 0
       @pointers = []

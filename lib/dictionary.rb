@@ -57,6 +57,24 @@ module Forth
       @sender.sub_run(tokens)
     end
 
+    def add_loop(value)
+      @sender.loops << value
+    end
+
+    def pop_loop
+      @sender.loops.pop
+    end
+
+    def loop_index
+      @sender.loops.last
+    end
+
+    def second_loop_index
+      @sender.loops[-2]
+    end
+
+
+
     def def_new_word(name, location)
       @new_words[name.to_sym] = location
     end
