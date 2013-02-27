@@ -12,8 +12,7 @@ module Forth
 
     def_word :DUP do
       a = pop
-      push a
-      push a 
+      2.times { push a }
     end
   end 
 end
