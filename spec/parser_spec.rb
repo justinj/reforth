@@ -18,12 +18,12 @@ describe Forth::Parser do
     end  
 
     it "makes a tree structure with IFs" do
-      parser.tokenize("1 IF 5 . THEN").should eql ["1", "IF", ["5", "."]]
+      parser.tokenize("1 IF 5 . THEN").should eql ["1", "IF", [["5", "."]]]
     end
 
     it "can nest IFs" do
       parser.tokenize("IF IF 5 . THEN THEN").
-        should eql ["IF", ["IF", ["5", "."]]]
+        should eql ["IF", [["IF", [["5", "."]]]]]
     end
 
     it "branches for ELSE" do

@@ -20,8 +20,8 @@ module Forth
       tree = []
       until tokens.empty?
         token = tokens.shift
-        return tree if ends_block?(token)
-        return [tree, parse(tokens)] if mid_block?(token)
+        return [tree] if ends_block?(token)
+        return [tree] + parse(tokens) if mid_block?(token)
         tree << token
         tree << parse(tokens) if begins_block?(token)
       end

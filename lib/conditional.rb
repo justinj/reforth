@@ -14,13 +14,12 @@ module Forth
     def_word :IF do
       a = pop
       pointer_inc
-      # ew ugly
-      unless token_under_pointer.first.is_a? Array
-        if_else = [token_under_pointer, []]
-      else
-        if_else = token_under_pointer
+      block = token_under_pointer
+      if a != 0
+        run_block block[0]
+      elsif block.count > 1
+        run_block block[1]
       end
-      run_block if_else[a == 0 ? 1 : 0]
       pointer_inc
     end
 
