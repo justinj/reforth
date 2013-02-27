@@ -13,6 +13,11 @@ module Forth
     end
 
     def run(tokens)
+      @output = ""
+      sub_run(tokens)
+    end
+
+    def sub_run(tokens)
       @tokens << tokens
       @pointers << 0
       until @pointers.last >= @tokens.last.count
@@ -35,10 +40,6 @@ module Forth
     def output text
       @output += " " unless @output == ""
       @output << text 
-    end
-
-    def flush
-      @output = ""
     end
 
     def number?(token)

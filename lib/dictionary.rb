@@ -54,7 +54,7 @@ module Forth
     end
 
     def run_block(tokens)
-      @sender.run(tokens)
+      @sender.sub_run(tokens)
     end
 
     def def_new_word(name, location)
