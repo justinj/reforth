@@ -1,7 +1,6 @@
 # Functions relating to comparison and conditionals
 
 require_relative "forth_module"
-require_relative "truthyness"
 
 module Forth
   module Conditional
@@ -9,25 +8,25 @@ module Forth
     def_word :"=" do
       a = pop
       b = pop
-      push Forth::to_value(a == b)
+      push (a == b) ? 1 : 0
     end
 
     def_word :">" do
       a = pop
       b = pop
-      push Forth::to_value(b > a)
+      push (b > a) ? 1 : 0
     end
 
     def_word :"<" do
       a = pop
       b = pop
-      push Forth::to_value(b < a)
+      push (b < a) ? 1 : 0
     end
 
     def_word :OR do
       a = pop
       b = pop
-      push Forth::to_value(Forth::truthy?(a) || Forth::truthy?(b))
+      push ((a != 0) || (b != 0)) ? 1 : 0
     end
 
     def_word :IF do
