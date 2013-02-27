@@ -13,6 +13,38 @@ describe Forth::Conditional do
     end
   end
 
+  describe "#>" do
+    it "puts a truthy value if the second is not greater than the first" do
+      parser.run("5 4 > .").should eql "1"
+    end
+
+    it "puts a falsey value if the second is greater than the first" do
+      parser.run("5 6 > .").should eql "0"
+    end
+  end
+
+  describe "#<" do
+    it "puts a falsey value if the second is less than the first" do
+      parser.run("5 4 < .").should eql "0"
+    end
+
+    it "puts a truthy value if the second is not less than the first" do
+      parser.run("5 6 < .").should eql "1"
+    end
+  end
+
+  describe "#OR" do
+    it "puts a truthy value if one of the things on top is true" do
+      parser.run("1 0 OR .").should_not eql "0"
+      parser.run("0 1 OR .").should_not eql "0"
+      parser.run("1 1 OR .").should_not eql "0"
+    end
+
+    it "puts a falsey value if both things are false" do
+      parser.run("0 0 OR .").should eql "0"
+    end
+  end
+
   describe "#IF" do
     it "executes up to THEN if the thing on top of the stack is truthy" do
       parser.run("1 IF 5 . THEN").should eql "5"
