@@ -37,6 +37,10 @@ module Forth
       @output << text 
     end
 
+    def flush
+      @output = ""
+    end
+
     def number?(token)
       /^\d+$/ =~ token 
     end

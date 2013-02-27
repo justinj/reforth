@@ -36,12 +36,28 @@ describe Forth::Conditional do
   describe "#OR" do
     it "puts a truthy value if one of the things on top is true" do
       parser.run("1 0 OR .").should_not eql "0"
+      parser.flush
       parser.run("0 1 OR .").should_not eql "0"
+      parser.flush
       parser.run("1 1 OR .").should_not eql "0"
     end
 
     it "puts a falsey value if both things are false" do
       parser.run("0 0 OR .").should eql "0"
+    end
+  end
+
+  describe "#AND" do
+    it "puts a truthy value if both are true" do
+      parser.run("1 1 AND .").should_not eql "0"
+    end
+
+    it "puts a falsey value if one of the things is falsey" do
+      parser.run("0 0 AND .").should eql "0"
+      parser.flush
+      parser.run("1 0 AND .").should eql "0"
+      parser.flush
+      parser.run("0 1 AND .").should eql "0"
     end
   end
 

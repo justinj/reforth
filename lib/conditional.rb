@@ -37,6 +37,12 @@ module Forth
       push truthify(truthy?(a) || truthy?(b))
     end
 
+    def_word :AND do
+      a = pop
+      b = pop
+      push truthify(truthy?(a) && truthy?(b))
+    end
+
     def_word :IF do
       a = pop
       pointer_inc

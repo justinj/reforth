@@ -37,6 +37,10 @@ module Forth
       token == "ELSE"
     end
 
+    def flush
+      @program.flush
+    end
+
     def ends_block?(token)
       ["THEN", "LOOP"].include? token
     end
