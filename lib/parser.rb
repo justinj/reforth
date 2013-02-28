@@ -12,7 +12,7 @@ module Forth
     end 
 
     def tokenize(code)
-      tokens = code.split(/\s/)
+      tokens = code.split(/\s+/)
       parse(tokens)
     end
 
