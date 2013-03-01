@@ -10,6 +10,10 @@ describe Forth::Parser do
     it "prints out what's on top of the stack" do
       parser.run("1 .").should eql "1"
     end
+
+    it "is case insensitive" do
+      parser.run("1 dup . .").should eql "1 1"
+    end
   end 
 
   describe "#tokenize" do
