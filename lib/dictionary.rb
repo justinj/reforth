@@ -3,6 +3,7 @@ require_relative "functions"
 require_relative "math"
 require_relative "conditional"
 require_relative "loop"
+require_relative "operator"
 
 module Forth
   class Dictionary
@@ -11,6 +12,7 @@ module Forth
     include Math
     include Conditional
     include Loop
+    include Operator
 
     def initialize program
       @sender = program
