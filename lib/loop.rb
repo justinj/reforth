@@ -21,5 +21,14 @@ module Forth
     def_word :J do
       push second_loop_index
     end
+
+    def_word :BEGIN do
+      value = 0
+      pointer_inc
+      while value == 0
+        run_block token_under_pointer[0] 
+        value = pop
+      end
+    end
   end
 end

@@ -20,4 +20,14 @@ describe Forth::Loop do
       parser.run("2 0 DO 2 0 DO J . LOOP LOOP").should eql "0 0 1 1"
     end
   end
+
+  describe "#BEGIN" do
+    it "exits if the thing at the end is truthy" do
+      parser.run("BEGIN 1 UNTIL 1 .").should eql "1"
+    end
+
+    it "runs until the thing at the end is truthy" do
+      parser.run("5 BEGIN 1 - DUP . DUP 0= UNTIL").should eql "4 3 2 1 0"
+    end
+  end
 end

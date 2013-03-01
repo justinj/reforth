@@ -42,7 +42,7 @@ module Forth
     end
 
     def begins_block?(token)
-      ["IF","DO"].include? token
+      ["IF","DO","BEGIN"].include? token
     end
 
     def begins_function_block?(token)
@@ -55,7 +55,7 @@ module Forth
     end
 
     def ends_block?(token)
-      ["THEN", "LOOP",";"].include? token
+      ["THEN", "LOOP",";","UNTIL"].include? token
     end
   end
 end
