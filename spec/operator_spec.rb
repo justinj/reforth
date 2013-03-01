@@ -13,4 +13,10 @@ describe Forth::Operator do
       parser.run("1 2 DROP .").should eql "1"
     end
   end
+
+  describe "#OVER" do
+    it "duplicates the second thing onto the top" do
+      parser.run("1 2 OVER . . .").should eql "1 2 1"
+    end
+  end
 end

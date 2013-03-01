@@ -12,5 +12,13 @@ module Forth
     def_word :DROP do
       pop
     end
+
+    def_word :OVER do
+      a = pop
+      b = pop
+      push b
+      push a
+      push b
+    end
   end
 end

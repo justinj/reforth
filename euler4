@@ -1,0 +1,35 @@
+: REVERSE
+  0
+  BEGIN
+    10 *
+    OVER 10 MOD  
+    +
+    SWAP 10 / SWAP
+  OVER 0= 
+  UNTIL
+  SWAP DROP
+;
+
+: IS_PALINDROME?
+  DUP REVERSE =
+;
+
+: UPPER 1000 ;
+: LOWER 100 ;
+
+: SOLVE
+0
+UPPER LOWER DO
+  I 1+ LOWER DO
+    I J * IS_PALINDROME?
+    IF
+      I J * MAX 
+    THEN    
+  LOOP
+LOOP
+.
+;
+
+SOLVE
+
+bye
