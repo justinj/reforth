@@ -7,4 +7,10 @@ describe Forth::Operator do
       parser.run("1 2 SWAP . .").should eql "1 2" 
     end
   end
+
+  describe "#DROP" do
+    it "drops the top value" do
+      parser.run("1 2 DROP .").should eql "1"
+    end
+  end
 end

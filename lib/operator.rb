@@ -8,5 +8,9 @@ module Forth
       push a
       push b
     end
+
+    def_word :DROP do
+      pop
+    end
   end
 end
