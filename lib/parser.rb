@@ -12,8 +12,14 @@ module Forth
     end 
 
     def tokenize(code)
+      code = remove_comments(code)
       tokens = code.upcase.split(/\s+/)
       tokens = parse(tokens)
+    end
+
+    def remove_comments(code)
+      code = code.gsub(/\(.*?\)/,"")
+      code = code.gsub(/\\.*?\Z/,"")
     end
 
     def parse(tokens)

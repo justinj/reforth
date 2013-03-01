@@ -14,6 +14,14 @@ describe Forth::Parser do
     it "is case insensitive" do
       parser.run("1 dup . .").should eql "1 1"
     end
+
+    it "ignores bracket comments" do
+      parser.run("1 dup (2 .) . .").should eql "1 1"
+    end
+
+    it "ignores backslash comments" do
+      parser.run('1 . \ this is a comment').should eql "1"
+    end
   end 
 
   describe "#tokenize" do
