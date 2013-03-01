@@ -30,5 +30,10 @@ describe Forth::Parser do
       parser.tokenize("IF 1 ELSE 2 THEN").
         should eql ["IF", [["1"], ["2"]]]
     end
+
+    it "branches for functions" do
+      parser.tokenize(": PUT_5 5 . ;").
+        should eql [":", ["PUT_5", ["5", "."]]]
+    end
   end
 end

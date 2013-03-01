@@ -1,0 +1,15 @@
+: MULT_3? 3 MOD 0= ;
+: MULT_5? 5 MOD 0= ;
+
+: SOLVE
+  0
+  1000 0 DO
+    I MULT_3?
+    I MULT_5?
+    OR IF I + THEN
+  LOOP
+  .
+;
+
+SOLVE
+BYE

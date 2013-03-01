@@ -14,5 +14,9 @@ module Forth
       a = pop
       2.times { push a }
     end
+
+    def_word :BYE do
+      exit
+    end
   end 
 end

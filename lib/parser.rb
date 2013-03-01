@@ -13,7 +13,7 @@ module Forth
 
     def tokenize(code)
       tokens = code.split(/\s+/)
-      parse(tokens)
+      tokens = parse(tokens)
     end
 
     def parse(tokens)
@@ -24,12 +24,23 @@ module Forth
         return [tree] + parse(tokens) if mid_block?(token)
         tree << token
         tree << parse(tokens) if begins_block?(token)
+        if begins_function_block?(token)
+          tree << [tokens.shift, parse(tokens).first]
+        end
       end
       tree
     end
 
+    def on_output(&block)
+      @program.on_output(&block)
+    end
+
     def begins_block?(token)
       ["IF","DO"].include? token
+    end
+
+    def begins_function_block?(token)
+      token == ":"
     end
 
     # some things, like ELSE, split up a block to two
@@ -38,7 +49,7 @@ module Forth
     end
 
     def ends_block?(token)
-      ["THEN", "LOOP"].include? token
+      ["THEN", "LOOP",";"].include? token
     end
   end
 end

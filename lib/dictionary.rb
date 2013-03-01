@@ -75,14 +75,13 @@ module Forth
 
 
 
-    def def_new_word(name, location)
-      @new_words[name.to_sym] = location
+    def def_new_word(name, block)
+      @new_words[name.to_sym] = block
     end
 
     def run word
       if @new_words.has_key? word.to_sym
-        push_rstack(pointer_loc)
-        pointer_jump(@new_words[word.to_sym])
+        run_block(@new_words[word.to_sym])
       elsif @@standard_words.has_key? word.to_sym
         instance_eval(&@@standard_words[word.to_sym])
       else

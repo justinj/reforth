@@ -31,6 +31,11 @@ module Forth
       push truthify(b < a)
     end
 
+    def_word :"0=" do
+      a = pop
+      push truthify(a == 0)
+    end
+
     def_word :OR do
       a = pop
       b = pop

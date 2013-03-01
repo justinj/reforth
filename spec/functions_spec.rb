@@ -21,5 +21,9 @@ describe Forth::Parser do
     it "can be done in another function" do
       parser.run(": PUT_5 5 . ; : PUT_55 PUT_5 PUT_5 ; PUT_55").should eql "5 5"
     end
+
+    it "can be done in a loop" do
+      parser.run(": PUT_5 5 . ; 5 0 DO PUT_5 LOOP").should eql "5 5 5 5 5"
+    end
   end
 end

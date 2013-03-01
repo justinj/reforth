@@ -13,6 +13,7 @@ module Forth
       @output = ""
       @dictionary = Dictionary.new self
       @tokens = []
+      @output_block = nil
     end
 
     def run(tokens)
@@ -40,9 +41,15 @@ module Forth
       end 
     end
 
+    def on_output(&block)
+      @output_block = block
+    end
+
     def output text
-      @output += " " unless @output == ""
-      @output << text 
+      new_output = @output == "" ? "" : " "
+      new_output << text 
+      @output += new_output
+      @output_block.call(new_output) if @output_block
     end
 
     def number?(token)
@@ -69,6 +76,10 @@ module Forth
     def pop_rstack
       raise "rstack underflow" if @rstack.empty?
       @rstack.pop
+    end
+
+    def stack_depth
+      @stack.count
     end
 
     def current_token

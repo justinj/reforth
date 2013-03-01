@@ -33,6 +33,16 @@ describe Forth::Conditional do
     end
   end
 
+  describe "#0=" do
+    it "is true when the value is 0" do
+      parser.run("0 0= .").should_not eql "0"
+    end
+
+    it "is false when the value is nonzero" do
+      parser.run("1 0= .").should eql "0"
+    end
+  end
+
   describe "#OR" do
     it "puts a truthy value if one of the things on top is true" do
       parser.run("1 0 OR .").should_not eql "0"
