@@ -40,4 +40,24 @@ describe Forth::Math do
       lambda { parser.run("1 0 MOD .") }.should raise_error "division by 0"
     end
   end
+
+  describe "#1+" do
+    it "adds 1" do
+      parser.run("1 1+ .").should eql "2"
+    end
+  end
+
+  describe "#MAX" do
+    it "takes the max of two things" do
+      parser.run("1 2 MAX .").should eql "2"
+      parser.run("2 1 MAX .").should eql "2"
+    end
+  end
+
+  describe "#MIN" do
+    it "takes the min of two things" do
+      parser.run("1 2 MIN .").should eql "1"
+      parser.run("2 1 MIN .").should eql "1"
+    end
+  end
 end

@@ -36,5 +36,22 @@ module Forth
       b = pop
       push(b % a)
     end
+
+    def_word :"1+" do
+      a = pop
+      push(a + 1)
+    end
+
+    def_word :MAX do
+      a = pop
+      b = pop
+      push([a,b].max)
+    end
+
+    def_word :MIN do
+      a = pop
+      b = pop
+      push([a,b].min)
+    end
   end
 end
