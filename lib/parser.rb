@@ -13,13 +13,13 @@ module Forth
 
     def tokenize(code)
       code = remove_comments(code)
-      tokens = code.upcase.split(/\s+/)
+      tokens = code.upcase.split(/\s+/).reject { |token| token.empty? }
       tokens = parse(tokens)
     end
 
     def remove_comments(code)
       code = code.gsub(/\(.*?\)/,"")
-      code = code.gsub(/\\.*?\Z/,"")
+      code = code.gsub(/\\.*$/,"")
     end
 
     def parse(tokens)

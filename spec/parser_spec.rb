@@ -22,6 +22,10 @@ describe Forth::Parser do
     it "ignores backslash comments" do
       parser.run('1 . \ this is a comment').should eql "1"
     end
+
+    it "ignores lines that are only comments" do
+      lambda { parser.run('\ comment!') }.should_not raise_error
+    end
   end 
 
   describe "#tokenize" do
