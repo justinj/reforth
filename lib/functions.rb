@@ -8,7 +8,7 @@ module Forth
       pointer_inc
       function = token_under_pointer
       name = function.first
-      block = function.last
+      block = function.last[0]
       def_new_word(name, block)
     end 
 

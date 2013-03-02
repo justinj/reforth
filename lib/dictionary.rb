@@ -75,8 +75,6 @@ module Forth
       @sender.loops[-2]
     end
 
-
-
     def def_new_word(name, block)
       @new_words[name.to_sym] = block
     end

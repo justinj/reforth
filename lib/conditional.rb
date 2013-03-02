@@ -54,8 +54,8 @@ module Forth
       block = token_under_pointer
       if truthy?(a)
         run_block block[0]
-      elsif block.count > 1
-        run_block block[1]
+      elsif block.count > 2
+        run_block block[2]
       end
       pointer_inc
     end
