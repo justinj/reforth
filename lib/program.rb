@@ -8,7 +8,6 @@ module Forth
       @stack = []
       @loops = []
       @rstack = []
-      @pointer_loc = 0
       @pointers = []
       @output = ""
       @dictionary = Dictionary.new self
