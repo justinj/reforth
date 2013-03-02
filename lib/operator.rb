@@ -20,5 +20,13 @@ module Forth
       push a
       push b
     end
+
+    def_word :"R>" do
+      push pop_rstack 
+    end
+
+    def_word :">R" do
+      push_rstack pop
+    end
   end
 end

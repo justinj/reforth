@@ -19,4 +19,14 @@ describe Forth::Operator do
       parser.run("1 2 OVER . . .").should eql "1 2 1"
     end
   end
+
+  describe "#rstack" do
+    it "can be placed onto" do
+      lambda { parser.run("1 >R") }.should_not raise_error
+    end
+
+    it "can be popped off of" do
+      parser.run("1 2 >R . R> .").should eql "1 2"
+    end
+  end
 end
